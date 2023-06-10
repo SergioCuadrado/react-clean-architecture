@@ -1,10 +1,12 @@
-import { Roles, type ApiUser, type User } from '../../../../models'
+import { type ApiRickAndMorty, type RickAndMortyModel } from '../models/rickAndMorty.model'
 
-export const RickAndMortyAdapter = (user: ApiUser): User => {
+export const RickAndMortyAdapter = (user: ApiRickAndMorty): RickAndMortyModel => {
   return {
     id: user.id,
     name: user.name,
-    email: 'prueba@gmail.com',
-    role: Roles.ADMIN
+    status: user.status,
+    species: user.species,
+    gender: user.gender,
+    image: user.image
   }
 }

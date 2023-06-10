@@ -1,15 +1,17 @@
 import axios from 'axios'
 import { RickAndMortyAdapter } from '../adapter/rickAndMorty.adapter'
+import { type ApiRickAndMorty } from '../models/rickAndMorty.model'
+// import { RickAndMortyAdapter } from '../adapter/rickAndMorty.adapter'
 
-export const rickAndMortyUrl = 'https://rickandmortyapi.com/api/character/2'
+export const rickAndMortyUrl = 'https://rickandmortyapi.com/api/character'
 
-export const fetchMorty = async (url: string) => {
-  return await fetch(url)
-    .then(res => res.json())
-    .then(res => RickAndMortyAdapter(res))
+export const fetchRickAndMorty = async () => {
+  const { data } = await axios.get(rickAndMortyUrl)
+  const adaptedResults = data.results.map((result: ApiRickAndMorty) => RickAndMortyAdapter(result))
+  return adaptedResults
 }
 
 
 export const TestingService = () => {
-  return axios.get('https://rasdfickandmortyapi.com/api/character/2')
+  return axios.get('https://rickandmortyapi.com/api/character/2')
 }
