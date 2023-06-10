@@ -22,6 +22,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 0 }],
-    '@typescript-eslint/promise-function-async': 'off'
+    '@typescript-eslint/promise-function-async': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off'
   }
 }
