@@ -2,11 +2,19 @@ import { useEffect, useState } from 'react'
 import { fetchRickAndMorty } from '../services/rickAndMorty.service'
 import { type RickAndMortyModel } from '../models/rickAndMorty.model'
 import ContentLoader from 'react-content-loader'
+import { useErrorBoundary } from 'react-error-boundary'
 
 export const RickAndMorty = () => {
+  const { showBoundary } = useErrorBoundary()
   const [data, setData] = useState<RickAndMortyModel[]>([])
   useEffect(() => {
-    fetchRickAndMorty().then((res) => { setData(res) }).catch((err) => { console.log(err) })
+    fetchRickAndMorty()
+      .then((res) => {
+        setData(res)
+      })
+      .catch((err) => {
+        showBoundary(err)
+      })
   }, [])
 
   if (!data.length) {
